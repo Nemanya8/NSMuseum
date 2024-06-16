@@ -45,4 +45,20 @@ public class UserService {
             throw new RuntimeException("User with id " + id + " not found");
         }
     }
+
+	public User registerUser(User user) {
+		Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
+        if (existingUser.isPresent()) {
+        	throw new RuntimeException("A user with an email " + user.getEmail() + " already exists");
+        }
+		return userRepository.save(user);
+	}
+
+	public User loginUser(User user) {
+		Optional<User> checkedUser = userRepository.findByEmail(user.getEmail());
+        if (checkedUser.isPresent()) {
+        	return user;
+        }else
+        	throw new RuntimeException("A user with an email " + user.getEmail() + " doesn't exist");
+	}
 }
