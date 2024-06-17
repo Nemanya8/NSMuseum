@@ -23,34 +23,34 @@ import jakarta.validation.Valid;
 @RequestMapping("/article")
 public class ArticleController {
 
-	@Autowired
-	private ArticleService articleService;
-	
-    @GetMapping
+    @Autowired
+    private ArticleService articleService;
+
+    @GetMapping("/allArticles")
     public ResponseEntity<List<Article>> allArticles() {
         List<Article> articles = articleService.getAllArticle();
         return ResponseEntity.ok(articles);
     }
-    
+
     @GetMapping("name/{articleName}")
     public ResponseEntity<List<Article>> articlesByName(@PathVariable String articleName) {
-    	List<Article> articles = articleService.getArticlesByName(articleName);
-    	return ResponseEntity.ok(articles);
+        List<Article> articles = articleService.getArticlesByName(articleName);
+        return ResponseEntity.ok(articles);
     }
-	
+
     @PostMapping
-	public ResponseEntity<Article> createArticle(@RequestBody @Valid Article article) {
-		Article createdArticle = articleService.createArticle(article);
-		return ResponseEntity.ok(createdArticle);
-	}
-	
+    public ResponseEntity<Article> createArticle(@RequestBody @Valid Article article) {
+        Article createdArticle = articleService.createArticle(article);
+        return ResponseEntity.ok(createdArticle);
+    }
+
     @GetMapping("/{articleId}")
     public ResponseEntity<Article> getArticleById(@PathVariable int articleId) {
-    	Optional<Article> article = articleService.getArticleById(articleId);
-    	return article.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        Optional<Article> article = articleService.getArticleById(articleId);
+        return article.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
-    
-    @PutMapping("/{articleId}")
+
+    @PutMapping("/updateArticle/{articleId}")
     public ResponseEntity<Article> updateArticle(@PathVariable int articleId, @RequestBody @Valid Article article) {
         try {
             Article updatedArticle = articleService.updateArticle(articleId, article);

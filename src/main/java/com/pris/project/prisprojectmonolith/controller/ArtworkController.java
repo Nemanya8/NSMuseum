@@ -23,7 +23,7 @@ public class ArtworkController {
         return ResponseEntity.ok(createdArtwork);
     }
 
-    @GetMapping
+    @GetMapping("/getAllArtworks")
     public ResponseEntity<List<Artwork>> getAllArtwork() {
         List<Artwork> artworks = artworkService.getAllArtwork();
         return ResponseEntity.ok(artworks);

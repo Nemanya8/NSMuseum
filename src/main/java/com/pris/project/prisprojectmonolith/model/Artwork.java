@@ -14,7 +14,7 @@ public class Artwork {
 
     private String name;
     private String description;
-    private String creationDate;
+    private int creationDate;
     private String author;
     private String movement;
     private String museum;
@@ -48,11 +48,11 @@ public class Artwork {
         this.description = description;
     }
 
-    public String getCreationDate() {
+    public int getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(int creationDate) {
         this.creationDate = creationDate;
     }
 
